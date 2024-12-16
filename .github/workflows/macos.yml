@@ -16,7 +16,7 @@ jobs:
 
     - name: install deps
       run: |
-        brew install qt@5 autoconf automake libtool
+        brew install qt@5 autoconf automake libtool vapoursynth
 
     - name: build
       run: |
