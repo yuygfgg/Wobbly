@@ -14,9 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: install qt
+    - name: install deps
       run: |
-        brew install qt@5
+        brew install qt@5 autoconf automake libtool
 
     - name: build
       run: |
