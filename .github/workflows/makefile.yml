@@ -1,0 +1,37 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: install qt
+      run: |
+        brew install qt@5
+
+    - name: build
+      run: |
+        export PKG_CONFIG_PATH="/opt/homebrew/opt/qt@5/lib/pkgconfig:$PKG_CONFIG_PATH"
+        ./autogen.sh
+        ./configure
+        make -j
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.4.3
+      with:
+        path: |
+          ./woobly
+          ./wibbly
+
+          
+
+
